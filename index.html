@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Favourite Person ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500&display=swap');
+
+:root {
+  --gold: #e6c58b;
+  --pink: #e5a0ad;
+  --cream: #fff4e7;
+  --bg: #100b0e;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+
+button { font: inherit; cursor: pointer; }
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 32px 20px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 100%, #57252c80, transparent 55%),
+    linear-gradient(180deg, #100b0e, #211015 70%, #100b0e);
+}
+
+.hero::before, .hero::after {
+  content: "♡";
+  position: absolute;
+  color: #e6c58b22;
+  font-size: clamp(140px, 35vw, 360px);
+  animation: float 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero::before { top: 5%; left: -8%; }
+.hero::after { bottom: 0; right: -8%; animation-delay: -3s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-22px) rotate(5deg); }
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+h1, h2, .script {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(54px, 10vw, 105px);
+  line-height: .98;
+  margin: 24px 0;
+}
+
+h1 em, h2 em { color: var(--gold); }
+
+.hero p {
+  max-width: 420px;
+  color: #e7d4d0;
+  line-height: 1.9;
+  font-size: 13px;
+}
+
+.btn {
+  border: 1px solid #e6c58b80;
+  color: var(--cream);
+  background: #e6c58b10;
+  border-radius: 40px;
+  padding: 15px 25px;
+  margin-top: 25px;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #e6c58b25;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px #e6c58b18;
+}
+
+.music-btn {
+  position: fixed;
+  z-index: 20;
+  right: 15px;
+  bottom: 15px;
+  background: #26151c;
+  border: 1px solid #e6c58b70;
+  color: var(--cream);
+  padding: 12px 17px;
+  border-radius: 30px;
+  font-size: 12px;
+  box-shadow: 0 5px 25px #0005;
+}
+
+.music-btn.playing { color: var(--gold); }
+
+section.memory {
+  padding: 95px 22px;
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
+}
+
+h2 {
+  font-size: clamp(38px, 7vw, 64px);
+  margin: 18px 0;
+}
+
+.section-text {
+  max-width: 590px;
+  margin: 20px auto;
+  color: #d6c4c7;
+  line-height: 2;
+  font-size: 14px;
+}
+
+.line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 28px auto;
+}
+
+.story {
+  background: linear-gradient(135deg, #25151b, #120d10);
+  border: 1px solid #e6c58b20;
+  padding: clamp(25px, 6vw, 55px);
+  border-radius: 3px;
+  text-align: left;
+  margin-top: 38px;
+}
+
+.story p {
+  color: #e1d1d0;
+  line-height: 2.1;
+  font-size: 14px;
+}
+
+.story .script {
+  color: var(--gold);
+  font-size: 29px;
+  font-style: italic;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 650px;
+  margin: 38px auto 0;
+}
+
+.photo {
+  min-height: 190px;
+  border: 1px solid #e6c58b30;
+  background: linear-gradient(145deg, #39222c, #171014);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.photo span {
+  padding: 15px;
+  font-size: 12px;
+  color: #e6c58b;
+}
+
+.photo input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.letter {
+  background: #f2e6d7;
+  color: #3b2027;
+  padding: clamp(25px, 6vw, 55px);
+  max-width: 620px;
+  margin: 35px auto 0;
+  text-align: left;
+  box-shadow: 0 20px 60px #0004;
+}
+
+.letter h3 {
+  font: italic 36px 'Cormorant Garamond', serif;
+  margin-top: 0;
+}
+
+.letter p {
+  line-height: 2;
+  font-size: 13px;
+}
+
+.letter .signature {
+  font: italic 29px 'Cormorant Garamond', serif;
+  color: #8a3e51;
+  margin-top: 25px;
+}
+
+footer {
+  text-align: center;
+  padding: 70px 20px 110px;
+  background: radial-gradient(ellipse at bottom, #49202b, transparent 70%);
+}
+
+footer h2 { font-size: clamp(45px, 9vw, 78px); }
+
+footer p { color: #d6b9bd; font-size: 12px; line-height: 2; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+#surprise { display: none; }
+
+@media (max-width: 480px) {
+  .gallery { gap: 9px; }
+  .photo, .photo img { min-height: 150px; }
+  section.memory { padding: 70px 18px; }
+}
+
+/* Birthday memory gallery - single clean set of rules */
+#surprise .gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  width: 92%;
+  max-width: 760px;
+  margin: 30px auto;
+  padding: 0;
+}
+
+#surprise .gallery .photo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 215, 180, 0.3);
+  border-radius: 12px;
+  background: #1b1115;
+}
+
+#surprise .gallery .photo img {
+  position: static;
+  inset: auto;
+  display: block;
+  flex: 0 0 230px;
+  width: 100%;
+  height: 230px;
+  min-height: 230px;
+  max-height: 230px;
+  object-fit: cover;
+  object-position: center;
+}
+
+#surprise .gallery .photo span {
+  position: static;
+  display: block;
+  flex: 0 0 auto;
+  padding: 12px 8px;
+  text-align: center;
+  color: #f5d5dc;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 520px) {
+  #surprise .gallery {
+    grid-template-columns: 1fr;
+    width: 92%;
+    gap: 14px;
+  }
+
+  #surprise .gallery .photo img {
+    flex-basis: 250px;
+    height: 250px;
+    min-height: 250px;
+    max-height: 250px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="ourSong" src="o-maahi.mp3" loop preload="none"></audio>
+
+<button class="music-btn" id="musicBtn" type="button">
+  ♫ Play our song ❤️
+</button>
+
+<header class="hero" id="top">
+  <div class="eyebrow">A little world made just for you</div>
+
+  <h1>Happy Birthday,<br><em>My Love.</em></h1>
+
+  <p>
+    If I could give you one thing in life,
+    I would give you the ability to see yourself
+    through my eyes. Only then would you know
+    how special you are to me.
+  </p>
+
+  <button class="btn" id="openBtn" type="button">
+    Open your surprise ♡
+  </button>
+
+  <div style="margin-top:45px;color:#e6c58b80;font-size:11px;letter-spacing:3px">
+    MADE WITH LOVE · JUST FOR YOU
+  </div>
+</header>
+
+<div id="surprise">
+
+  <section class="memory reveal">
+    <div class="eyebrow">Chapter one</div>
+    <h2>The day <em>we met.</em></h2>
+    <div class="line"></div>
+
+    <p class="section-text">
+      I never knew that one ordinary day would
+      become the beginning of something so special.
+    </p>
+
+    <div class="story">
+      <div class="script">Our beginning ♡</div>
+
+      <p>
+        I never knew that talking to you that day,
+        over a Back Current shake, would become
+        one of my favourite memories. 🥹❤️
+      </p>
+
+      <p>
+        I had no idea that someone I was just talking
+        to would slowly become such an important
+        part of my life.
+      </p>
+
+      <p>
+        But as we spent more time together, talked
+        about little things, laughed together, and got
+        to know each other, I found myself falling
+        for you, little by little.
+      </p>
+
+      <p>
+        It wasn't something I planned; it just happened
+        so naturally. And somewhere along the way,
+        without even realizing it, I started falling
+        in love with you. ❤️
+      </p>
+    </div>
+  </section>
+
+  <section class="memory reveal">
+    <div class="eyebrow">Little pieces of forever</div>
+    <h2>Our <em>memories.</em></h2>
+
+    <p class="section-text">
+       
+    </p>
+
+    
+
+<div class="gallery">
+  <div class="photo">
+    <img src="images/photo1.jpeg" alt="Pasandida Mard">
+    <span>Pasandida Mard ❤️</span>
+  </div>
+
+  <div class="photo">
+    <img src="images/photo2.jpeg" alt="First Outing With You">
+    <span>First Outing With You 🫶</span>
+  </div>
+
+  <div class="photo">
+    <img src="images/photo3.jpeg" alt="Our selfie">
+    <span>Our selfie 💗</span>
+  </div>
+
+  <div class="photo">
+    <img src="images/photo4.jpeg" alt="Forever US">
+    <span>Forever US✨</span>
+  </div>
+
+  <div class="photo">
+    <img src="images/photo5.jpeg" alt="Cuteness Overloaded">
+    <span>Cuteness Overloaded🥹</span>
+  </div>
+
+  <div class="photo">
+    <img src="images/photo6.jpeg" alt="A beautiful memory - Event Day">
+    <span>A beautiful memory - Event Day ❤️</span>
+  </div>
+</div>
+
+
+  </section>
+
+  <section class="memory reveal">
+    <div class="eyebrow">From my heart to yours</div>
+    <h2>A letter <em>for you.</em></h2>
+
+    <div class="letter">
+      <h3>Happy Birthday, baby ❤️</h3>
+
+      <p>
+        I can't even explain how I feel about you
+        or how much you mean to me. The way you
+        treat me, care for me, and make me feel
+        special is truly priceless.
+      </p>
+
+      <p>
+        I can't imagine my life without you.
+        And please, baby, kabhi bhi yeh mat bolna
+        ki tum mere liye achhe nahi ho, because
+        for me, you are more than enough. 🫶🏻
+      </p>
+
+      <p>
+        Kabhi-kabhi thoda zyada bol deti hoon,
+        maar bhi deti hoon 😂, lekin apni bacchi
+        samajh ke maaf kar diya karo.
+      </p>
+
+      <p>
+        Bas jaldi-jaldi apni tabiyat theek kar lo,
+        phir apun leave pe chalenge. Aur jab bhi
+        mann kare, call kar diya karo. Don't ever
+        think that you're disturbing me.
+        I'm always there for you. ❤️
+      </p>
+
+      <p>
+        I just want you to be happy, healthy,
+        and smiling. You will always have someone
+        cheering for you, believing in you,
+        and wishing the best for you.
+      </p>
+
+      <p class="signature">Always yours, ♡</p>
+    </div>
+  </section>
+
+  <footer class="reveal">
+    <div class="eyebrow">And this is only the beginning</div>
+    <h2>Forever my<br><em>favourite person.</em></h2>
+
+    <p>
+      Happy Birthday, baby. 🧿❤️<br>
+      More memories, more laughter, more us.
+    </p>
+
+    <button class="btn" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      Back to the beginning ↑
+    </button>
+  </footer>
+
+</div>
+
+<script>
+const openBtn = document.getElementById('openBtn');
+const surprise = document.getElementById('surprise');
+const song = document.getElementById('ourSong');
+const musicBtn = document.getElementById('musicBtn');
+
+openBtn.addEventListener('click', () => {
+  surprise.style.display = 'block';
+
+  surprise.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+  });
+
+  surprise.scrollIntoView({ behavior: 'smooth' });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+musicBtn.addEventListener('click', async () => {
+  if (song.paused) {
+    try {
+      await song.play();
+      musicBtn.textContent = '♫ Pause our song';
+      musicBtn.classList.add('playing');
+    } catch (error) {
+      alert('Please check that o-maahi.mp3 is beside index.html.');
+    }
+  } else {
+    song.pause();
+    musicBtn.textContent = '♫ Play our song ❤️';
+    musicBtn.classList.remove('playing');
+  }
+});
+
+song.addEventListener('ended', () => {
+  musicBtn.textContent = '♫ Play our song ❤️';
+  musicBtn.classList.remove('playing');
+});
+
+function showPhoto(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    alert('Please choose an image file.');
+    input.value = '';
+    return;
+  }
+
+  const frame = input.closest('.photo');
+  let img = frame.querySelector('img');
+
+  if (!img) {
+    img = document.createElement('img');
+    img.alt = 'Your memory';
+    frame.appendChild(img);
+  }
+
+  if (frame.dataset.objectUrl) {
+    URL.revokeObjectURL(frame.dataset.objectUrl);
+  }
+
+  const url = URL.createObjectURL(file);
+  frame.dataset.objectUrl = url;
+  img.src = url;
+  frame.querySelector('span').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
